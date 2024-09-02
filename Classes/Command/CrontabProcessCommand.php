@@ -37,6 +37,9 @@ EOH
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
+        // Make sure the _cli_ user is loaded
+        Bootstrap::initializeBackendAuthentication();
+
         $taskIdentifier = $input->getArgument('taskIdentifier');
         $taskRepository = GeneralUtility::makeInstance(TaskRepository::class);
         $taskDefinition = $taskRepository->findByIdentifier($taskIdentifier);
