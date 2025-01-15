@@ -8,6 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use TYPO3\CMS\Core\Core\Bootstrap;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CrontabProcessCommand extends Command
@@ -37,6 +38,9 @@ EOH
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
+        // Make sure the _cli_ user is loaded
+        Bootstrap::initializeBackendAuthentication();
+
         $taskIdentifier = $input->getArgument('taskIdentifier');
         $taskRepository = GeneralUtility::makeInstance(TaskRepository::class);
         $taskDefinition = $taskRepository->findByIdentifier($taskIdentifier);
