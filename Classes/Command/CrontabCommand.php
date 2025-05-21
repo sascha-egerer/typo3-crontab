@@ -20,7 +20,7 @@ class CrontabCommand extends Command
     /**
      * Configure the command by defining the name, options and arguments
      */
-    public function configure()
+    public function configure(): void
     {
         $this
             ->setDescription('Start Crontab from the command line.')
