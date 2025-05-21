@@ -136,7 +136,7 @@ class Crontab
                 'next_execution' => 'ASC',
             ]
         );
-        while ($scheduleInformation = $statement->fetch()) {
+        while ($scheduleInformation = $statement->fetchAssociative()) {
             if ($scheduleInformation['next_execution'] > time()) {
                 break;
             }
