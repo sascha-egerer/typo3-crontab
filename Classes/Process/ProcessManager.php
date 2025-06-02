@@ -168,8 +168,8 @@ class ProcessManager implements LoggerAwareInterface
     private function startProcess(TaskProcess $subProcess): void
     {
         $subProcess->start();
-        $this->logger->info(sprintf('Starting task "%s" process with pid "%d".', $subProcess->getTaskIdentifier(), $subProcess->getPid()));
-        $this->addToRunningTable($subProcess->getTaskIdentifier(), $subProcess->getPid());
+        $this->logger->info(sprintf('Starting task "%s" process with pid "%d".', $subProcess->getTaskIdentifier(), $subProcess->getFormerPid()));
+        $this->addToRunningTable($subProcess->getTaskIdentifier(), $subProcess->getFormerPid());
         $this->dispatchEvent(new ProcessStarted($subProcess->getTaskIdentifier()));
     }
 
